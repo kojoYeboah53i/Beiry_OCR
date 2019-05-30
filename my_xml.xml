@@ -1,0 +1,933 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+-<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://stockservice.contoso.com/wse/samples/2005/10" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://stockservice.contoso.com/wse/samples/2005/10/AbstractTypes" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://stockservice.contoso.com/wse/samples/2005/10" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/">
+
+
+-<wsdl:types>
+
+
+-<s:schema targetNamespace="http://stockservice.contoso.com/wse/samples/2005/10" elementFormDefault="qualified">
+
+
+-<s:element name="OCRWebServiceRecognize">
+
+
+-<s:complexType>
+
+
+-<s:sequence>
+
+<s:element name="user_name" type="s:string" maxOccurs="1" minOccurs="0"/>
+
+<s:element name="license_code" type="s:string" maxOccurs="1" minOccurs="0"/>
+
+<s:element name="OCRWSInputImage" type="tns:OCRWSInputImage" maxOccurs="1" minOccurs="1" nillable="true"/>
+
+<s:element name="OCRWSSetting" type="tns:OCRWSSettings" maxOccurs="1" minOccurs="1" nillable="true"/>
+
+</s:sequence>
+
+</s:complexType>
+
+</s:element>
+
+
+-<s:complexType name="OCRWSInputImage">
+
+
+-<s:sequence>
+
+<s:element name="fileName" type="s:string" maxOccurs="1" minOccurs="0"/>
+
+<s:element name="fileData" type="s:base64Binary" maxOccurs="1" minOccurs="0"/>
+
+</s:sequence>
+
+</s:complexType>
+
+
+-<s:complexType name="OCRWSSettings">
+
+
+-<s:sequence>
+
+<s:element name="ocrLanguages" type="tns:OCRWS_Language" maxOccurs="unbounded" minOccurs="0"/>
+
+<s:element name="outputDocumentFormat" type="tns:OCRWS_OutputFormat" maxOccurs="1" minOccurs="1"/>
+
+<s:element name="convertToBW" type="s:boolean" maxOccurs="1" minOccurs="1"/>
+
+<s:element name="getOCRText" type="s:boolean" maxOccurs="1" minOccurs="1"/>
+
+<s:element name="createOutputDocument" type="s:boolean" maxOccurs="1" minOccurs="1"/>
+
+<s:element name="multiPageDoc" type="s:boolean" maxOccurs="1" minOccurs="1"/>
+
+<s:element name="pageNumbers" type="s:string" maxOccurs="1" minOccurs="0"/>
+
+<s:element name="ocrZones" type="tns:ArrayOfOCRWSZone" maxOccurs="1" minOccurs="0"/>
+
+<s:element name="ocrWords" type="s:boolean" maxOccurs="1" minOccurs="1"/>
+
+<s:element name="Reserved" type="s:string" maxOccurs="1" minOccurs="0"/>
+
+</s:sequence>
+
+</s:complexType>
+
+
+-<s:simpleType name="OCRWS_Language">
+
+
+-<s:restriction base="s:string">
+
+<s:enumeration value="BRAZILIAN"/>
+
+<s:enumeration value="BYELORUSSIAN"/>
+
+<s:enumeration value="BULGARIAN"/>
+
+<s:enumeration value="CATALAN"/>
+
+<s:enumeration value="CROATIAN"/>
+
+<s:enumeration value="CZECH"/>
+
+<s:enumeration value="DANISH"/>
+
+<s:enumeration value="DUTCH"/>
+
+<s:enumeration value="ENGLISH"/>
+
+<s:enumeration value="ESTONIAN"/>
+
+<s:enumeration value="FINNISH"/>
+
+<s:enumeration value="FRENCH"/>
+
+<s:enumeration value="GERMAN"/>
+
+<s:enumeration value="GREEK"/>
+
+<s:enumeration value="HUNGARIAN"/>
+
+<s:enumeration value="INDONESIAN"/>
+
+<s:enumeration value="ITALIAN"/>
+
+<s:enumeration value="LATIN"/>
+
+<s:enumeration value="LATVIAN"/>
+
+<s:enumeration value="LITHUANIAN"/>
+
+<s:enumeration value="MOLDAVIAN"/>
+
+<s:enumeration value="POLISH"/>
+
+<s:enumeration value="PORTUGUESE"/>
+
+<s:enumeration value="ROMANIAN"/>
+
+<s:enumeration value="RUSSIAN"/>
+
+<s:enumeration value="SERBIAN"/>
+
+<s:enumeration value="SLOVAKIAN"/>
+
+<s:enumeration value="SLOVENIAN"/>
+
+<s:enumeration value="SPANISH"/>
+
+<s:enumeration value="SWEDISH"/>
+
+<s:enumeration value="TURKISH"/>
+
+<s:enumeration value="UKRAINIAN"/>
+
+<s:enumeration value="JAPANESE"/>
+
+<s:enumeration value="CHINESESIMPLIFIED"/>
+
+<s:enumeration value="CHINESETRADITIONAL"/>
+
+<s:enumeration value="KOREAN"/>
+
+<s:enumeration value="AFRIKAANS"/>
+
+<s:enumeration value="ALBANIAN"/>
+
+<s:enumeration value="BASQUE"/>
+
+<s:enumeration value="ESPERANTO"/>
+
+<s:enumeration value="GALICIAN"/>
+
+<s:enumeration value="ICELANDIC"/>
+
+<s:enumeration value="MACEDONIAN"/>
+
+<s:enumeration value="MALAY"/>
+
+<s:enumeration value="NORWEGIAN"/>
+
+<s:enumeration value="TAGALOG"/>
+
+</s:restriction>
+
+</s:simpleType>
+
+
+-<s:simpleType name="OCRWS_OutputFormat">
+
+
+-<s:restriction base="s:string">
+
+<s:enumeration value="DOC"/>
+
+<s:enumeration value="PDF"/>
+
+<s:enumeration value="EXCEL"/>
+
+<s:enumeration value="HTML"/>
+
+<s:enumeration value="TXT"/>
+
+<s:enumeration value="RTF"/>
+
+<s:enumeration value="PDFIMGTEXT"/>
+
+<s:enumeration value="DOCX"/>
+
+<s:enumeration value="XLSX"/>
+
+</s:restriction>
+
+</s:simpleType>
+
+
+-<s:complexType name="ArrayOfOCRWSZone">
+
+
+-<s:sequence>
+
+<s:element name="OCRWSZone" type="tns:OCRWSZone" maxOccurs="unbounded" minOccurs="0" nillable="true"/>
+
+</s:sequence>
+
+</s:complexType>
+
+
+-<s:complexType name="OCRWSZone">
+
+
+-<s:sequence>
+
+<s:element name="Top" type="s:int" maxOccurs="1" minOccurs="1"/>
+
+<s:element name="Left" type="s:int" maxOccurs="1" minOccurs="1"/>
+
+<s:element name="Height" type="s:int" maxOccurs="1" minOccurs="1"/>
+
+<s:element name="Width" type="s:int" maxOccurs="1" minOccurs="1"/>
+
+<s:element name="ZoneType" type="s:int" maxOccurs="1" minOccurs="1"/>
+
+</s:sequence>
+
+</s:complexType>
+
+
+-<s:element name="OCRWebServiceRecognizeResponse">
+
+
+-<s:complexType>
+
+
+-<s:sequence>
+
+<s:element name="OCRWSResponse" type="tns:OCRWSResponse" maxOccurs="1" minOccurs="1" nillable="true"/>
+
+</s:sequence>
+
+</s:complexType>
+
+</s:element>
+
+
+-<s:complexType name="OCRWSResponse">
+
+
+-<s:sequence>
+
+<s:element name="ocrText" type="tns:ArrayOfArrayOfString" maxOccurs="1" minOccurs="0"/>
+
+<s:element name="fileName" type="s:string" maxOccurs="1" minOccurs="0"/>
+
+<s:element name="fileData" type="s:base64Binary" maxOccurs="1" minOccurs="0"/>
+
+<s:element name="errorMessage" type="s:string" maxOccurs="1" minOccurs="0"/>
+
+<s:element name="ocrWSWords" type="tns:ArrayOfArrayOfOCRWSWord" maxOccurs="1" minOccurs="0"/>
+
+<s:element name="availablePages" type="s:int" maxOccurs="1" minOccurs="1"/>
+
+<s:element name="processedPages" type="s:int" maxOccurs="1" minOccurs="1"/>
+
+<s:element name="outputInformation" type="s:string" maxOccurs="1" minOccurs="0"/>
+
+</s:sequence>
+
+</s:complexType>
+
+
+-<s:complexType name="ArrayOfArrayOfString">
+
+
+-<s:sequence>
+
+<s:element name="ArrayOfString" type="tns:ArrayOfString" maxOccurs="unbounded" minOccurs="0" nillable="true"/>
+
+</s:sequence>
+
+</s:complexType>
+
+
+-<s:complexType name="ArrayOfString">
+
+
+-<s:sequence>
+
+<s:element name="string" type="s:string" maxOccurs="unbounded" minOccurs="0" nillable="true"/>
+
+</s:sequence>
+
+</s:complexType>
+
+
+-<s:complexType name="ArrayOfArrayOfOCRWSWord">
+
+
+-<s:sequence>
+
+<s:element name="ArrayOfOCRWSWord" type="tns:ArrayOfOCRWSWord" maxOccurs="unbounded" minOccurs="0" nillable="true"/>
+
+</s:sequence>
+
+</s:complexType>
+
+
+-<s:complexType name="ArrayOfOCRWSWord">
+
+
+-<s:sequence>
+
+<s:element name="OCRWSWord" type="tns:OCRWSWord" maxOccurs="unbounded" minOccurs="0" nillable="true"/>
+
+</s:sequence>
+
+</s:complexType>
+
+
+-<s:complexType name="OCRWSWord">
+
+
+-<s:sequence>
+
+<s:element name="Top" type="s:int" maxOccurs="1" minOccurs="1"/>
+
+<s:element name="Left" type="s:int" maxOccurs="1" minOccurs="1"/>
+
+<s:element name="Height" type="s:int" maxOccurs="1" minOccurs="1"/>
+
+<s:element name="Width" type="s:int" maxOccurs="1" minOccurs="1"/>
+
+<s:element name="OCRWord" type="s:string" maxOccurs="1" minOccurs="0"/>
+
+</s:sequence>
+
+</s:complexType>
+
+
+-<s:element name="OCRWebServiceLog">
+
+
+-<s:complexType>
+
+
+-<s:sequence>
+
+<s:element name="user_name" type="s:string" maxOccurs="1" minOccurs="0"/>
+
+<s:element name="license_code" type="s:string" maxOccurs="1" minOccurs="0"/>
+
+<s:element name="from_date" type="s:string" maxOccurs="1" minOccurs="0"/>
+
+<s:element name="to_date" type="s:string" maxOccurs="1" minOccurs="0"/>
+
+<s:element name="reserved" type="tns:ArrayOfString" maxOccurs="1" minOccurs="0"/>
+
+</s:sequence>
+
+</s:complexType>
+
+</s:element>
+
+
+-<s:element name="OCRWebServiceLogResponse">
+
+
+-<s:complexType>
+
+
+-<s:sequence>
+
+<s:element name="OCRWebServiceLogResult" type="s:string" maxOccurs="1" minOccurs="0"/>
+
+</s:sequence>
+
+</s:complexType>
+
+</s:element>
+
+
+-<s:element name="OCRWebServiceAvailablePages">
+
+
+-<s:complexType>
+
+
+-<s:sequence>
+
+<s:element name="user_name" type="s:string" maxOccurs="1" minOccurs="0"/>
+
+<s:element name="license_code" type="s:string" maxOccurs="1" minOccurs="0"/>
+
+</s:sequence>
+
+</s:complexType>
+
+</s:element>
+
+
+-<s:element name="OCRWebServiceAvailablePagesResponse">
+
+
+-<s:complexType>
+
+
+-<s:sequence>
+
+<s:element name="OCRWebServiceAvailablePagesResult" type="s:int" maxOccurs="1" minOccurs="1"/>
+
+</s:sequence>
+
+</s:complexType>
+
+</s:element>
+
+<s:element name="string" type="s:string" nillable="true"/>
+
+<s:element name="int" type="s:int"/>
+
+</s:schema>
+
+
+-<s:schema targetNamespace="http://stockservice.contoso.com/wse/samples/2005/10/AbstractTypes">
+
+<s:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+
+
+-<s:complexType name="StringArray">
+
+
+-<s:complexContent mixed="false">
+
+
+-<s:restriction base="soapenc:Array">
+
+
+-<s:sequence>
+
+<s:element name="String" type="s:string" maxOccurs="unbounded" minOccurs="0"/>
+
+</s:sequence>
+
+</s:restriction>
+
+</s:complexContent>
+
+</s:complexType>
+
+</s:schema>
+
+</wsdl:types>
+
+
+-<wsdl:message name="OCRWebServiceRecognizeSoapIn">
+
+<wsdl:part name="parameters" element="tns:OCRWebServiceRecognize"/>
+
+</wsdl:message>
+
+
+-<wsdl:message name="OCRWebServiceRecognizeSoapOut">
+
+<wsdl:part name="parameters" element="tns:OCRWebServiceRecognizeResponse"/>
+
+</wsdl:message>
+
+
+-<wsdl:message name="OCRWebServiceLogSoapIn">
+
+<wsdl:part name="parameters" element="tns:OCRWebServiceLog"/>
+
+</wsdl:message>
+
+
+-<wsdl:message name="OCRWebServiceLogSoapOut">
+
+<wsdl:part name="parameters" element="tns:OCRWebServiceLogResponse"/>
+
+</wsdl:message>
+
+
+-<wsdl:message name="OCRWebServiceAvailablePagesSoapIn">
+
+<wsdl:part name="parameters" element="tns:OCRWebServiceAvailablePages"/>
+
+</wsdl:message>
+
+
+-<wsdl:message name="OCRWebServiceAvailablePagesSoapOut">
+
+<wsdl:part name="parameters" element="tns:OCRWebServiceAvailablePagesResponse"/>
+
+</wsdl:message>
+
+
+-<wsdl:message name="OCRWebServiceLogHttpGetIn">
+
+<wsdl:part name="user_name" type="s:string"/>
+
+<wsdl:part name="license_code" type="s:string"/>
+
+<wsdl:part name="from_date" type="s:string"/>
+
+<wsdl:part name="to_date" type="s:string"/>
+
+<wsdl:part name="reserved" type="s1:StringArray"/>
+
+</wsdl:message>
+
+
+-<wsdl:message name="OCRWebServiceLogHttpGetOut">
+
+<wsdl:part name="Body" element="tns:string"/>
+
+</wsdl:message>
+
+
+-<wsdl:message name="OCRWebServiceAvailablePagesHttpGetIn">
+
+<wsdl:part name="user_name" type="s:string"/>
+
+<wsdl:part name="license_code" type="s:string"/>
+
+</wsdl:message>
+
+
+-<wsdl:message name="OCRWebServiceAvailablePagesHttpGetOut">
+
+<wsdl:part name="Body" element="tns:int"/>
+
+</wsdl:message>
+
+
+-<wsdl:message name="OCRWebServiceLogHttpPostIn">
+
+<wsdl:part name="user_name" type="s:string"/>
+
+<wsdl:part name="license_code" type="s:string"/>
+
+<wsdl:part name="from_date" type="s:string"/>
+
+<wsdl:part name="to_date" type="s:string"/>
+
+<wsdl:part name="reserved" type="s1:StringArray"/>
+
+</wsdl:message>
+
+
+-<wsdl:message name="OCRWebServiceLogHttpPostOut">
+
+<wsdl:part name="Body" element="tns:string"/>
+
+</wsdl:message>
+
+
+-<wsdl:message name="OCRWebServiceAvailablePagesHttpPostIn">
+
+<wsdl:part name="user_name" type="s:string"/>
+
+<wsdl:part name="license_code" type="s:string"/>
+
+</wsdl:message>
+
+
+-<wsdl:message name="OCRWebServiceAvailablePagesHttpPostOut">
+
+<wsdl:part name="Body" element="tns:int"/>
+
+</wsdl:message>
+
+
+-<wsdl:portType name="OCRWebServiceSoap">
+
+
+-<wsdl:operation name="OCRWebServiceRecognize">
+
+<wsdl:input message="tns:OCRWebServiceRecognizeSoapIn"/>
+
+<wsdl:output message="tns:OCRWebServiceRecognizeSoapOut"/>
+
+</wsdl:operation>
+
+
+-<wsdl:operation name="OCRWebServiceLog">
+
+<wsdl:input message="tns:OCRWebServiceLogSoapIn"/>
+
+<wsdl:output message="tns:OCRWebServiceLogSoapOut"/>
+
+</wsdl:operation>
+
+
+-<wsdl:operation name="OCRWebServiceAvailablePages">
+
+<wsdl:input message="tns:OCRWebServiceAvailablePagesSoapIn"/>
+
+<wsdl:output message="tns:OCRWebServiceAvailablePagesSoapOut"/>
+
+</wsdl:operation>
+
+</wsdl:portType>
+
+
+-<wsdl:portType name="OCRWebServiceHttpGet">
+
+
+-<wsdl:operation name="OCRWebServiceLog">
+
+<wsdl:input message="tns:OCRWebServiceLogHttpGetIn"/>
+
+<wsdl:output message="tns:OCRWebServiceLogHttpGetOut"/>
+
+</wsdl:operation>
+
+
+-<wsdl:operation name="OCRWebServiceAvailablePages">
+
+<wsdl:input message="tns:OCRWebServiceAvailablePagesHttpGetIn"/>
+
+<wsdl:output message="tns:OCRWebServiceAvailablePagesHttpGetOut"/>
+
+</wsdl:operation>
+
+</wsdl:portType>
+
+
+-<wsdl:portType name="OCRWebServiceHttpPost">
+
+
+-<wsdl:operation name="OCRWebServiceLog">
+
+<wsdl:input message="tns:OCRWebServiceLogHttpPostIn"/>
+
+<wsdl:output message="tns:OCRWebServiceLogHttpPostOut"/>
+
+</wsdl:operation>
+
+
+-<wsdl:operation name="OCRWebServiceAvailablePages">
+
+<wsdl:input message="tns:OCRWebServiceAvailablePagesHttpPostIn"/>
+
+<wsdl:output message="tns:OCRWebServiceAvailablePagesHttpPostOut"/>
+
+</wsdl:operation>
+
+</wsdl:portType>
+
+
+-<wsdl:binding name="OCRWebServiceSoap" type="tns:OCRWebServiceSoap">
+
+<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+
+
+-<wsdl:operation name="OCRWebServiceRecognize">
+
+<soap:operation style="document" soapAction="http://stockservice.contoso.com/wse/samples/2005/10/OCRWebServiceRecognize"/>
+
+
+-<wsdl:input>
+
+<soap:body use="literal"/>
+
+</wsdl:input>
+
+
+-<wsdl:output>
+
+<soap:body use="literal"/>
+
+</wsdl:output>
+
+</wsdl:operation>
+
+
+-<wsdl:operation name="OCRWebServiceLog">
+
+<soap:operation style="document" soapAction="http://stockservice.contoso.com/wse/samples/2005/10/OCRWebServiceLog"/>
+
+
+-<wsdl:input>
+
+<soap:body use="literal"/>
+
+</wsdl:input>
+
+
+-<wsdl:output>
+
+<soap:body use="literal"/>
+
+</wsdl:output>
+
+</wsdl:operation>
+
+
+-<wsdl:operation name="OCRWebServiceAvailablePages">
+
+<soap:operation style="document" soapAction="http://stockservice.contoso.com/wse/samples/2005/10/OCRWebServiceAvailablePages"/>
+
+
+-<wsdl:input>
+
+<soap:body use="literal"/>
+
+</wsdl:input>
+
+
+-<wsdl:output>
+
+<soap:body use="literal"/>
+
+</wsdl:output>
+
+</wsdl:operation>
+
+</wsdl:binding>
+
+
+-<wsdl:binding name="OCRWebServiceSoap12" type="tns:OCRWebServiceSoap">
+
+<soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+
+
+-<wsdl:operation name="OCRWebServiceRecognize">
+
+<soap12:operation style="document" soapAction="http://stockservice.contoso.com/wse/samples/2005/10/OCRWebServiceRecognize"/>
+
+
+-<wsdl:input>
+
+<soap12:body use="literal"/>
+
+</wsdl:input>
+
+
+-<wsdl:output>
+
+<soap12:body use="literal"/>
+
+</wsdl:output>
+
+</wsdl:operation>
+
+
+-<wsdl:operation name="OCRWebServiceLog">
+
+<soap12:operation style="document" soapAction="http://stockservice.contoso.com/wse/samples/2005/10/OCRWebServiceLog"/>
+
+
+-<wsdl:input>
+
+<soap12:body use="literal"/>
+
+</wsdl:input>
+
+
+-<wsdl:output>
+
+<soap12:body use="literal"/>
+
+</wsdl:output>
+
+</wsdl:operation>
+
+
+-<wsdl:operation name="OCRWebServiceAvailablePages">
+
+<soap12:operation style="document" soapAction="http://stockservice.contoso.com/wse/samples/2005/10/OCRWebServiceAvailablePages"/>
+
+
+-<wsdl:input>
+
+<soap12:body use="literal"/>
+
+</wsdl:input>
+
+
+-<wsdl:output>
+
+<soap12:body use="literal"/>
+
+</wsdl:output>
+
+</wsdl:operation>
+
+</wsdl:binding>
+
+
+-<wsdl:binding name="OCRWebServiceHttpGet" type="tns:OCRWebServiceHttpGet">
+
+<http:binding verb="GET"/>
+
+
+-<wsdl:operation name="OCRWebServiceLog">
+
+<http:operation location="/OCRWebServiceLog"/>
+
+
+-<wsdl:input>
+
+<http:urlEncoded/>
+
+</wsdl:input>
+
+
+-<wsdl:output>
+
+<mime:mimeXml part="Body"/>
+
+</wsdl:output>
+
+</wsdl:operation>
+
+
+-<wsdl:operation name="OCRWebServiceAvailablePages">
+
+<http:operation location="/OCRWebServiceAvailablePages"/>
+
+
+-<wsdl:input>
+
+<http:urlEncoded/>
+
+</wsdl:input>
+
+
+-<wsdl:output>
+
+<mime:mimeXml part="Body"/>
+
+</wsdl:output>
+
+</wsdl:operation>
+
+</wsdl:binding>
+
+
+-<wsdl:binding name="OCRWebServiceHttpPost" type="tns:OCRWebServiceHttpPost">
+
+<http:binding verb="POST"/>
+
+
+-<wsdl:operation name="OCRWebServiceLog">
+
+<http:operation location="/OCRWebServiceLog"/>
+
+
+-<wsdl:input>
+
+<mime:content type="application/x-www-form-urlencoded"/>
+
+</wsdl:input>
+
+
+-<wsdl:output>
+
+<mime:mimeXml part="Body"/>
+
+</wsdl:output>
+
+</wsdl:operation>
+
+
+-<wsdl:operation name="OCRWebServiceAvailablePages">
+
+<http:operation location="/OCRWebServiceAvailablePages"/>
+
+
+-<wsdl:input>
+
+<mime:content type="application/x-www-form-urlencoded"/>
+
+</wsdl:input>
+
+
+-<wsdl:output>
+
+<mime:mimeXml part="Body"/>
+
+</wsdl:output>
+
+</wsdl:operation>
+
+</wsdl:binding>
+
+
+-<wsdl:service name="OCRWebService">
+
+
+-<wsdl:port name="OCRWebServiceSoap" binding="tns:OCRWebServiceSoap">
+
+<soap:address location="http://www.ocrwebservice.com/services/OCRWebService.asmx"/>
+
+</wsdl:port>
+
+
+-<wsdl:port name="OCRWebServiceSoap12" binding="tns:OCRWebServiceSoap12">
+
+<soap12:address location="http://www.ocrwebservice.com/services/OCRWebService.asmx"/>
+
+</wsdl:port>
+
+
+-<wsdl:port name="OCRWebServiceHttpGet" binding="tns:OCRWebServiceHttpGet">
+
+<http:address location="http://www.ocrwebservice.com/services/OCRWebService.asmx"/>
+
+</wsdl:port>
+
+
+-<wsdl:port name="OCRWebServiceHttpPost" binding="tns:OCRWebServiceHttpPost">
+
+<http:address location="http://www.ocrwebservice.com/services/OCRWebService.asmx"/>
+
+</wsdl:port>
+
+</wsdl:service>
+
+</wsdl:definitions>

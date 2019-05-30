@@ -1,0 +1,62 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "8905720304c2dc97e43002ac23e1eff4",
+    "packages": [
+        {
+            "name": "pmdunggh/pdftotext",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pmdunggh/pdftotext.git",
+                "reference": "1d145d93b856f421ab4f000c1b934898fcc123ad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pmdunggh/pdftotext/zipball/1d145d93b856f421ab4f000c1b934898fcc123ad",
+                "reference": "1d145d93b856f421ab4f000c1b934898fcc123ad",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "VanXuan\\PdfToText\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GNU v3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Pham Minh Dung",
+                    "email": "pmdung@gmail.com"
+                },
+                {
+                    "name": "Christian Vigh",
+                    "email": "christian.vigh@wuthering-bytes.com"
+                }
+            ],
+            "description": "Extract text, image from PDF file",
+            "homepage": "http://www.pdftotext.eu",
+            "keywords": [
+                "pdf2text",
+                "pdftotext"
+            ],
+            "time": "2017-06-23T07:12:38+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "pmdunggh/pdftotext": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
